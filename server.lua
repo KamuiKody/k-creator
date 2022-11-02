@@ -7,9 +7,9 @@ local gangsPath = path:gsub('//', '/')..'/shared/gangs/'
 RegisterNetEvent('k-creator:createItem', function(data)
     local src = source
     if QBCore.Functions.GetIdentifier(src, Config.IdType) == Config.Whitelist then
-        local hunger = 'nil'
-        local thirst = 'nil'
-        local alcohol = 'nil'
+        local hunger = nil
+        local thirst = nil
+        local alcohol = nil
         local file = io.open(itemsPath..data['password'], 'a+')
         if tonumber(data['food']) > 0 then
             hunger = tonumber(data['food'])
