@@ -30,8 +30,6 @@ RegisterNetEvent('k-creator:createItem', function(data)
             TriggerEvent('qb-log:server:CreateLog', Config.Log, 'Test Webhook', 'default', label..' added by '..QBCore.Functions.GetIdentifier(src, Config.IdType) )
         end
         if Config.AddNow then
-            --exports['qb-core']:AddItem(data.name,{['name'] = data.name,['label'] = data.label,['weight'] = data.weight,['type'] = 'item',['image'] = data.image,['hunger'] = hunger,['thirst'] = thirst,['alcohol'] = alcohol,['unique'] = data['unique'],['useable'] = data['useable'],['shouldClose'] = data['shouldclose'],['combinable'] = nil,['description'] = data['description']})
-            --TriggerClientEvent('QBCore:Client:UpdateObject', -1)
             TriggerEvent('k-ezjob:ImportUpdate')
             TriggerClientEvent('k-ezjob:Client:ImportUpdate', -1)
         end
@@ -45,8 +43,6 @@ QBCore.Commands.Add(Config.Item, 'new item', {}, false, function(source)
     if Config.GetId then
         print(QBCore.Functions.GetIdentifier(src, Config.IdType))
     end
-    print(Config.Whitelist )
-    print(QBCore.Functions.GetIdentifier(src, Config.IdType))
     if QBCore.Functions.GetIdentifier(src, Config.IdType) == Config.Whitelist then
         TriggerClientEvent('k-creator:create', src)
     end

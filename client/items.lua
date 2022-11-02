@@ -6,7 +6,6 @@ RegisterNetEvent('QBCore:Client:UpdateObject', function()
 end)
 
 local function CreateItem()
-    print(1)
     local dialog = exports['qb-input']:ShowInput({
         header = "Item Creation",
         submitText = "Submit Item",
