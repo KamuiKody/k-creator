@@ -1,0 +1,2 @@
+Pretty simple to use. Make sure Config.UseExports in the most up to date version of k-ezjob is set to true
+set up the config for the item creator while live to prevent exploits do not keep the item creator running it is a completely independent resource that injects items into the k-ezjob resource run it only when u are creating something then stop it after so it cannot be used. Usually changes take effect and items are useable immediately however if u choose to save them to a new file the server will need to be restarted for changes to take effect.
