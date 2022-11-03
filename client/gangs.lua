@@ -1,27 +1,20 @@
 QBCore = exports['qb-core']:GetCoreObject()
 local approved = false
 local dialog = nil
-local grades = {}
-local grade = 0
+local ranks = {}
+local rank = 0
 
-local function createGrades(num)
+local function createRanks(num)
     if num > 0 then
-        grades[grade] = exports['qb-input']:ShowInput({
-            header = "Grade ["..grade.."] Creation",
+        ranks[rank] = exports['qb-input']:ShowInput({
+            header = "Rank ["..grade.."] Creation",
             submitText = "Submit Item",
             inputs = {
                 {
-                    text = "Grade Label (as displayed)",
+                    text = "Rank Label (as displayed)",
                     name = "label",
                     type = "text",
                     isRequired = true,
-                },
-                {
-                    text = "Payment",
-                    name = "pay",
-                    type = "number",
-                    isRequired = true,
-                    default = 50
                 },
                 {
                     text = "Extra Options",
@@ -33,16 +26,16 @@ local function createGrades(num)
                 },
             }
         })
-        grade = grade + 1
-        createGrades(num-1)
+        rank = rank + 1
+        createRanks(num-1)
     else
-        TriggerServerEvent('k-creator:createJob',dialog,grades)
+        TriggerServerEvent('k-creator:createGang',dialog,ranks)
         dialog = nil
-        grades = {}
+        ranks = {}
     end
 end
 
-local function CreateJob()
+local function CreateGang()
     dialog = exports['qb-input']:ShowInput({
         header = "Job Creation",
         submitText = "Submit Item",
@@ -52,22 +45,16 @@ local function CreateJob()
                 name = "password",
                 type = "text",
                 isRequired = true,
-                default = 'jobs.lua'
+                default = 'gangs.lua'
             },
             {
-                text = "Job Name (lowercase)",
+                text = "Gang Name (lowercase)",
                 name = "name",
                 type = "text",
                 isRequired = true,
             },
             {
-                text = "Job Type (lowercase)",
-                name = "type",
-                type = "text",
-                isRequired = true,
-            },
-            {
-                text = "Job Label (as displayed)",
+                text = "Gang Label (as displayed)",
                 name = "label",
                 type = "text",
                 isRequired = true,
@@ -79,18 +66,8 @@ local function CreateJob()
                 isRequired = true,
             },
             {
-                text = "Extra Options",
-                name = "checks",
-                type = "checkbox",
-                options = {
-                    { value = "duty", text = "Default Duty", checked = true},
-                    { value = "offduty", text = "Off Duty Pay"},
-                    { value = "cityhall", text = "In City Hall"}
-                }
-            },
-            {
-                text = "How Many Grades",
-                name = "grades",
+                text = "How Many Ranks",
+                name = "ranks",
                 type = "number",
                 isRequired = true,
                 default = 1
@@ -98,9 +75,9 @@ local function CreateJob()
         }
     })
     grade = 0
-    createGrades(tonumber(dialog['grades']))
+    createRanks(tonumber(dialog['ranks']))
 end
 
-RegisterNetEvent('k-creator:job', function()
-    CreateJob()
+RegisterNetEvent('k-creator:gang', function()
+    CreateGang()
 end)
