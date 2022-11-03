@@ -11,7 +11,7 @@ RegisterNetEvent('k-creator:createJob', function(job, grades)
         local label = "\n\nImports.Jobs['"..job['name'].."'] = { \r    cityhall = "..job['cityhall']..", \r    startingCash = "..tonumber(job['money'])..", \r    label = '"..job['label'].."', \r    type = '"..job['type'].."', \r    defaultDuty = "..job["duty"]..", \r    offDutyPay = "..job["offduty"]..", \r    grades = { "
         local stage = 0
         for i = 1, job['grades'] do
-            label = label.."\r        ["..stage.."] = { \r            isboss = "..grades[stage]['isboss'].." \r            name = '"..grades[stage]['label'].."', \r            payment = "..tonumber(grades[stage]['pay']).." \r        },"
+            label = label.."\r        ["..stage.."] = { \r            isboss = "..grades[stage]['isboss'].." ,\r            name = '"..grades[stage]['label'].."', \r            payment = "..tonumber(grades[stage]['pay']).." \r        },"
             stage = stage + 1
         end
         label = label.."\r    } \r}"
@@ -39,7 +39,7 @@ RegisterNetEvent('k-creator:createGang', function(gang, ranks)
         local label = "\n\nImports.Gangs['"..gang['name'].."'] = { \r    startingCash = "..tonumber(gang['money'])..", \r    label = '"..gang['label'].."', \r    grades = { "
         local stage = 0
         for i = 1, gang['ranks'] do
-            label = label.."\r        ["..stage.."] = { \r            isboss = "..ranks[stage]['isboss'].." \r            name = '"..ranks[stage]['label'].."', \r        },"
+            label = label.."\r        ["..stage.."] = { \r            isboss = "..ranks[stage]['isboss']..", \r            name = '"..ranks[stage]['label'].."', \r        },"
             stage = stage + 1
         end
         label = label.."\r    } \r}"
